@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const express = require("express");
 const app = express();
 app.use(express.json());
@@ -29,7 +30,46 @@ process.on("SIGINT", () => {
     });
 });
 
-// paths 
+// ========== Paths ========== 
+
+// test if API is working 
 app.get("/", (req, res) => {
-  res.send("API is running");
+    res.send("API is running");
+});
+
+// deal with login request 
+app.post("/user/login", (req, res) => {
+    const { email, password } = req.body;
+    const sql = `
+        SELECT id, firstName, lastName, role, password
+        FROM users 
+        WHERE email = ?
+    `;
+
+    db.get(sql, [email], async (err, row) => {
+        // deal with database error 
+        if (err) {
+            return res.status(500).json({ error: "Database error" });
+        }
+        
+        // make sure a row was found 
+        if (!row) {
+            return res.status(401).json({ error: "Invalid email or password" });
+        }
+
+        // test password 
+        const match = await bcrypt.compare(password, row.password);
+
+        if (!match) {
+            return res.status(401).json({ error: "Invalid email or password" });
+        }
+
+        delete row.password; // remove password from row object 
+
+        // send successful response 
+        return res.status(200).json({
+            message: "Login successful",
+            user: row
+        });
+    });
 });
