@@ -116,7 +116,7 @@ export default function MakeAccountPage() {
             <div>
                 <button>Make Account</button>
             </div>
-            {error && <div className="error">Login failed</div>}
+            {error && <div className="error">Account creation failed</div>}
         </form>
     </section>
     )
