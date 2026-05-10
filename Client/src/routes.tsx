@@ -1,8 +1,9 @@
 import type { RouteObject } from "react-router";
 import Frame from "./Frame";
 import ErrorPage from "./routes/ErrorPage";
-import LoginPage from "./routes/LoginPage";
 import Redirect from "./routes/Redirect";
+import LoginPage from "./routes/LoginPage";
+import SignupPage from "./routes/SignupPage";
 
 const routes: RouteObject[] = [
     { 
@@ -17,6 +18,10 @@ const routes: RouteObject[] = [
             {
                 path: "/login",
                 element: <LoginPage/>
+            },
+            {
+                path: "/signup",
+                element: <SignupPage/>
             }
         ]
     }
