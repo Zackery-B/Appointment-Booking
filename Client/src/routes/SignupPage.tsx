@@ -45,9 +45,9 @@ export default function MakeAccountPage() {
             })
             .then((response) => { // manage api response 
                 if (!response.ok)
-                throw new Error(`***HTTP error, status: ${response.status}`); 
-
-                navigate('/login');
+                    throw new Error(`***HTTP error, status: ${response.status}`); 
+                else
+                    navigate('/login');
             })
             .catch(error => {
                 console.error(error);
@@ -103,13 +103,15 @@ export default function MakeAccountPage() {
                 />
             </div>
             <div>
+                <label htmlFor="role">Role</label>
                 <select
                 name="role"
+                id="role"
                 value={formData.role}
                 onChange={updateFormData}
                 >
-                <option value="client">Select role</option>
-                <option value="doctor">User</option>
+                <option value="client">Client</option>
+                <option value="doctor">Doctor</option>
                 </select>
                 <p>This is a placeholder solution.</p>
             </div>
