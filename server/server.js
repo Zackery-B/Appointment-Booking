@@ -103,7 +103,8 @@ app.post("/api/user/signup", async (req, res) => {
     });
 });
 
-app.get("/api/time-slots", async (req, rows) => {
+// gets all available time slots after current time 
+app.get("/api/time-slots", async (req, res) => {
     const sql = `
         SELECT 
             time_slots.id,
@@ -112,10 +113,11 @@ app.get("/api/time-slots", async (req, rows) => {
             users.last_name AS doctorLastName
         FROM time_slots
         JOIN users ON users.id = time_slots.doctor_id
-        WHERE datetime > datetime('now');
+        WHERE datetime > datetime('now') 
+        AND status = 'available';
     `;
 
-    db.run(sql, [], async (err) => {
+    db.run(sql, [], async (err, rows) => {
         // deal with database error 
         if (err) {            
             return res.status(500).json({ error: "Database error" });
