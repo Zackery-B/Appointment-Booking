@@ -55,7 +55,7 @@ db.serialize(() => {
         VALUES (
             '4026-01-01 01:00:00',
             'booked',
-            1,
+            1
         );
     `);
     
@@ -64,7 +64,7 @@ db.serialize(() => {
         VALUES (
             '4026-01-01 02:01:01',
             'available',
-            1,
+            1
         );
     `);
 
@@ -73,7 +73,7 @@ db.serialize(() => {
         VALUES (
             '4026-01-01 01:00:00',
             'available',
-            2,
+            2
         );
     `);
 
@@ -82,7 +82,7 @@ db.serialize(() => {
         VALUES (
             '4026-02-02 22:02:02',
             'available',
-            2,
+            2
         );
     `);
 
@@ -91,7 +91,7 @@ db.serialize(() => {
         VALUES (
             '1900-01-01 01:00:00',
             'available',
-            1,
+            1
         );
     `);
     
@@ -101,7 +101,7 @@ db.serialize(() => {
         VALUES (
             'pending',
             1,
-            3,
+            3
         );
     `);
 });
