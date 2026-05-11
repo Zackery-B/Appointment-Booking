@@ -26,9 +26,11 @@ export default function BookAppointmentPage() {
         fetch("/api/time-slots")
         .then((response) => response.json())
         .then((data) => {
-            setTimeSlots(data) 
+            setTimeSlots(data.data) // store the data from answer 
         })
-        // error is handled by error page / need time slots for this page to work 
+        .catch(error => {
+            console.error(error);
+        });
     }
 
     // handle form submission 
@@ -46,8 +48,8 @@ export default function BookAppointmentPage() {
                     <p>Select time slot</p>
                 ) : (
                     <>
-                    <span>Doctor: {selectedSlot.doctor}</span>
-                    <span>Time: {selectedSlot.dateTime}</span>
+                    <p>Dr. {selectedSlot.doctorFirstName} {selectedSlot.doctorLastName}</p>
+                    <p>Time: {selectedSlot.datetime}</p>
                     </>
                 )}
             </button>
@@ -57,7 +59,6 @@ export default function BookAppointmentPage() {
         <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)}>
             <TimeSlotSelector
                 timeSlots={timeSlots}
-                selectedSlot={selectedSlot}
                 setSelectedSlot={(slot:TimeSlot|null) => {
                     setSelectedSlot(slot);
                     setDrawerOpen(false); // auto-close on select

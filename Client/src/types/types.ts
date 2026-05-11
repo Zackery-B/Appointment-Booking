@@ -9,5 +9,5 @@ export interface TimeSlot {
     id:number;
     doctorFirstName:string;
     doctorLastName:string;
-    dateTime:string;
+    datetime:string;
 }
