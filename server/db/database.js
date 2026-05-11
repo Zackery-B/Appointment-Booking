@@ -23,7 +23,7 @@ db.serialize(() => {
             email TEXT UNIQUE NOT NULL,
             password TEXT NOT NULL,
             role TEXT NOT NULL CHECK(role IN ('doctor', 'client'))
-        )
+        );
     `);
 
     // date time is stored as 'YYYY-MM-DD HH:MM:SS' 
@@ -34,11 +34,11 @@ db.serialize(() => {
             status TEXT NOT NULL CHECK(status IN ('available', 'booked', 'canceled')),
             doctor_id INTEGER,
             FOREIGN KEY(doctor_id) REFERENCES users(id)
-        )
+        );
     `);
     
     // efficient sort by doctor 
-    db.run(`CREATE INDEX IF NOT EXISTS idx_doctor_id ON time_slots(doctor_id)`);
+    db.run(`CREATE INDEX IF NOT EXISTS idx_doctor_id ON time_slots(doctor_id);`);
 
     db.run(`
         CREATE TABLE IF NOT EXISTS appointments (
@@ -48,11 +48,11 @@ db.serialize(() => {
             client_id INTEGER,
             FOREIGN KEY(time_slot_id) REFERENCES time_slots(id),
             FOREIGN KEY(client_id) REFERENCES users(id)
-        )
+        );
     `);
     
     // efficient sort by client 
-    db.run(`CREATE INDEX IF NOT EXISTS idx_client_id ON appointments(client_id)`);
+    db.run(`CREATE INDEX IF NOT EXISTS idx_client_id ON appointments(client_id);`);
 });
 
 module.exports = db;
