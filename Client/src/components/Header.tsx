@@ -1,10 +1,10 @@
+import NavBar from "./NavBar"
 
 export default function Header() {
     return(
     <header className="Header">
-        <div className="Header-title">
-            <h1>Patient Bookings</h1>
-        </div>
+        <h1>Patient Bookings</h1>
+        <NavBar/>
     </header>
     )
 }
