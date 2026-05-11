@@ -11,7 +11,7 @@ export default function MakeAccountPage() {
         lastName: "",
         email: "",
         password: "",
-        role: ""
+        role: "client" // default value 
     });
 
     const [error, setError] = useState(false);
@@ -28,7 +28,7 @@ export default function MakeAccountPage() {
     // manage login attempt 
     function handleSubmit(submission: SubmitEvent<HTMLFormElement>){
         submission.preventDefault();
-        
+
         if ( Object.values(formData).some(value => value === "")) // make sure no form value is empty 
         {
             setError(true);
@@ -36,7 +36,7 @@ export default function MakeAccountPage() {
         else {
             
             // make request to api to validate login 
-            fetch("http://localhost:3001/user/signup",{
+            fetch("/api/user/signup",{
                 method: 'POST',
                 headers: {
                 'Content-Type': 'application/json',
