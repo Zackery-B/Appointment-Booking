@@ -1,10 +1,10 @@
 import { Navigate } from "react-router";
+import { useAuth } from "../contexts/AuthContext";
 
 export default function Redirect() {
-    // test if logged in ---------------------- not done 
-    const isLoggedIn = false;
+    const { user } = useAuth(); // Destructure auth object
 
-    return isLoggedIn
+    return (user != null) // test if logged in 
         ? <Navigate to="/dashboard" replace />
         : <Navigate to="/login" replace />;
 }
