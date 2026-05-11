@@ -43,7 +43,7 @@ db.serialize(() => {
     db.run(`
         CREATE TABLE IF NOT EXISTS appointments (
             slot_id INTEGER PRIMARY KEY AUTOINCREMENT,  
-            status TEXT NOT NULL CHECK(status IN ('pending', 'confirmed', 'canceled')),      
+            status TEXT NOT NULL CHECK(status IN ('pending', 'confirmed', 'cancelled')),      
             time_slot_id INTEGER,
             client_id INTEGER,
             FOREIGN KEY(time_slot_id) REFERENCES time_slots(id),
