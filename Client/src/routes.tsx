@@ -4,6 +4,7 @@ import ErrorPage from "./routes/ErrorPage";
 import Redirect from "./routes/Redirect";
 import LoginPage from "./routes/LoginPage";
 import SignupPage from "./routes/SignupPage";
+import BookAppointmentPage from "./routes/BookAppointmentsPage";
 
 const routes: RouteObject[] = [
     { 
@@ -22,6 +23,10 @@ const routes: RouteObject[] = [
             {
                 path: "/signup",
                 element: <SignupPage/>
+            },
+            {
+                path: "/appointments/book",
+                element: <BookAppointmentPage/>
             }
         ]
     }
