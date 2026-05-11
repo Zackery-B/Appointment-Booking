@@ -103,6 +103,32 @@ app.post("/api/user/signup", async (req, res) => {
     });
 });
 
+app.get("/api/time-slots", async (req, rows) => {
+    const sql = `
+        SELECT 
+            time_slots.id,
+            time_slots.datetime,
+            users.first_name AS doctorFirstName,
+            users.last_name AS doctorLastName
+        FROM time_slots
+        JOIN users ON users.id = time_slots.doctor_id
+        WHERE datetime > datetime('now');
+    `;
+
+    db.run(sql, [], async (err) => {
+        // deal with database error 
+        if (err) {            
+            return res.status(500).json({ error: "Database error" });
+        }
+        else { // send data
+            return res.status(200).json({ 
+                message: "Time slots sent",
+                data: rows 
+            });
+        }
+    });
+});
+
 // ============ testing / debugging ============
 app.get("/debug/users", (req, res) => {
     const sql = "SELECT * FROM users";
