@@ -113,7 +113,7 @@ export default function MakeAccountPage() {
                 <option value="client">Client</option>
                 <option value="doctor">Doctor</option>
                 </select>
-                <p>This is a placeholder solution.</p>
+                <span>This is a placeholder solution.</span>
             </div>
             <div>
                 <button>Make Account</button>
