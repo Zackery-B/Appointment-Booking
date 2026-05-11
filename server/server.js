@@ -73,3 +73,25 @@ app.post("/user/login", (req, res) => {
         });
     });
 });
+
+// deal with signup request 
+app.post("/user/signup", (req, res) => {
+    const {  firstName, lastName, email, password, role } = req.body;
+    const sql = `
+        INSERT INTO users (firstName, lastName, email, password, role)
+        VALUES (?, ?, ?, ?, ?);
+    `;
+
+    db.get(sql, [firstName, lastName, email, password, role], async (err) => {
+        // deal with database error 
+        if (err) {
+            if (err.code === "SQLITE_CONSTRAINT") {
+                return res.status(409).json({ error: "Duplicate or invalid data" });
+            }
+
+            return res.status(500).json({ error: "Database error" });
+        }
+        else // user created successfully 
+            return res.status(200).json({ message: "Signup successful" });
+    });
+});
