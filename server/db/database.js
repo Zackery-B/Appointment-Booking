@@ -21,7 +21,8 @@ db.serialize(() => {
             first_name TEXT,
             last_name TEXT,
             email TEXT UNIQUE NOT NULL,
-            role TEXT CHECK(role IN ('doctor', 'client'))
+            password TEXT NOT NULL,
+            role TEXT NOT NULL CHECK(role IN ('doctor', 'client'))
         )
     `);
 
