@@ -1,15 +1,25 @@
 .overlay{
-    position: "fixed";
+    position: fixed;
     inset: 0;
-    background: "rgba(0,0,0,0.4)";
+    background: rgba(0,0,0,0.4);
 }
 
+
 .drawer{
-    position: "fixed";
+    position: fixed;
+    box-sizing: border-box;
     right: 0;
     top: 0;
-    width: "400px"; /* ---------------- need to change from this --------------- */
-    height: "100%"; /* ---------------- need to change from this --------------- */
-    background: "white"; /* ---------------- need to change from this --------------- */
-    padding: "16px"; /* ---------------- need to change from this --------------- */
+    width: 40vw; 
+    height: 100vh; 
+    padding: 1em;
+    padding-top: 5em;
+    background: var(--Off-White);
+    transition: width 0.2s ease;
+}
+
+@media (max-width: 45em) {
+  .drawer {
+    width: 100vw;
+  }
 }
