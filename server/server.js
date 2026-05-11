@@ -33,15 +33,20 @@ process.on("SIGINT", () => {
 // ========== Paths ========== 
 
 // test if API is working 
-app.get("/", (req, res) => {
+app.get("/api/", (req, res) => {
     res.send("API is running");
 });
 
 // deal with login request 
-app.post("/user/login", (req, res) => {
+app.post("/api/user/login", (req, res) => {
     const { email, password } = req.body;
     const sql = `
-        SELECT id, firstName, lastName, role, password
+        SELECT 
+            id, 
+            first_name AS firstName, 
+            last_name AS lastName, 
+            role, 
+            password
         FROM users 
         WHERE email = ?
     `;
@@ -75,14 +80,16 @@ app.post("/user/login", (req, res) => {
 });
 
 // deal with signup request 
-app.post("/user/signup", (req, res) => {
+app.post("/api/user/signup", (req, res) => {
     const {  firstName, lastName, email, password, role } = req.body;
     const sql = `
-        INSERT INTO users (firstName, lastName, email, password, role)
+        INSERT INTO users (first_name, last_name, email, password, role)
         VALUES (?, ?, ?, ?, ?);
     `;
 
-    db.get(sql, [firstName, lastName, email, password, role], async (err) => {
+    const hashedPassword = await bcrypt.hash(password, 10); 
+
+    db.run(sql, [firstName, lastName, email, hashedPassword, role], async (err) => {
         // deal with database error 
         if (err) {
             if (err.code === "SQLITE_CONSTRAINT") {
@@ -93,5 +100,18 @@ app.post("/user/signup", (req, res) => {
         }
         else // user created successfully 
             return res.status(200).json({ message: "Signup successful" });
+    });
+});
+
+// ============ testing / debugging ============
+app.get("/debug/users", (req, res) => {
+    const sql = "SELECT * FROM users";
+
+    db.all(sql, [], (err, rows) => {
+        if (err) {
+            return res.status(500).json(err);
+        }
+
+        res.json(rows);
     });
 });
