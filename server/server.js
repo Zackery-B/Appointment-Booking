@@ -117,7 +117,7 @@ app.get("/api/time-slots", async (req, res) => {
         AND status = 'available';
     `;
 
-    db.run(sql, [], async (err, rows) => {
+    db.all(sql, [], async (err, rows) => {
         // deal with database error 
         if (err) {            
             return res.status(500).json({ error: "Database error" });
