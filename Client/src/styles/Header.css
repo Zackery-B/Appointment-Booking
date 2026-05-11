@@ -1,0 +1,17 @@
+.Header {
+    background-color: var(--Light-Blue);
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0.5em 2em 0.5em 1em;
+    font-size: 1.2em;
+    position: sticky;
+    top: 0;
+}
+
+.Header h1 {
+    font-size: 1.5em;
+    font-weight: bold;
+}

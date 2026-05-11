@@ -1,0 +1,34 @@
+.NavBar {
+    display: flex;
+    align-items: center;
+}
+
+.NavBar .NavLink {
+    font-size: 0.9em;
+    color: var(--Blue);
+    padding: 0.4em 1em;
+    border-radius: 0.3em;
+    text-decoration: none;
+    border-radius: 1em;
+}
+
+.NavBar .NavLink:hover {
+    background-color: var(--Light-Purple);
+    color: var(--Off-White);
+    transition-duration: 0.4s;
+}
+
+.NavBar button{
+    font-weight: bold;
+    font-size: 0.8em;
+    margin-left: 0.4em;
+}
+
+.NavBar a {
+    color: var(--Off-Black);
+    text-decoration: none;
+}
+
+.NavBar a:hover{
+    color: var(--Off-Black);
+}

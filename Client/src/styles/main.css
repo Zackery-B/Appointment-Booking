@@ -3,6 +3,8 @@
 :root{
     --Off-Black:#121212;
     --Off-White: #EDEDED; 
+    --Light-Blue: #5cbcd4;
+    --Light-Purple: #3b2599;
 }
 
 .Frame{
@@ -16,4 +18,17 @@ body{
     background-color: var(--Off-White);
     color: var(--Off-Black);
     font-size: 1rem;
+}
+
+a{
+    color: var(--Light-Purple);
+}
+
+a:visited{
+    color: var(--Light-Purple);
+}
+
+a:hover{
+    color: var(--Light-Blue);
+    transition-duration: 0.15s;
 }

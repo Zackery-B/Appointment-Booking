@@ -1,8 +1,9 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from "react-router";
 import routes from "./routes";
 import { AuthProvider } from './contexts/AuthProvider';
+import "./styles/main.css";
 
 const router = createBrowserRouter(routes, {
   basename: import.meta.env.BASE_URL,

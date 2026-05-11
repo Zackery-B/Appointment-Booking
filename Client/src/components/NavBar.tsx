@@ -1,7 +1,7 @@
 import { NavLink } from "react-router";
 import { useAuth } from "../contexts/AuthContext";
 import { useLocation } from 'react-router';
-//import "../styles/NavBar.css";
+import "../styles/NavBar.css";
 
 export default function NavBar() {
   const { user, logout} = useAuth(); // destructure auth object
