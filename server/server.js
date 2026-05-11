@@ -80,7 +80,7 @@ app.post("/api/user/login", (req, res) => {
 });
 
 // deal with signup request 
-app.post("/api/user/signup", (req, res) => {
+app.post("/api/user/signup", async (req, res) => {
     const {  firstName, lastName, email, password, role } = req.body;
     const sql = `
         INSERT INTO users (first_name, last_name, email, password, role)
@@ -95,7 +95,7 @@ app.post("/api/user/signup", (req, res) => {
             if (err.code === "SQLITE_CONSTRAINT") {
                 return res.status(409).json({ error: "Duplicate or invalid data" });
             }
-
+            
             return res.status(500).json({ error: "Database error" });
         }
         else // user created successfully 
