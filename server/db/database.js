@@ -55,9 +55,11 @@ db.serialize(() => {
     
     // efficient sort by client 
     db.run(`CREATE INDEX IF NOT EXISTS idx_client_id ON appointments(client_id);`);
+    // efficient time slot checks 
+    db.run(`CREATE INDEX IF NOT EXISTS idx_time_slot_id ON appointments(time_slot_id);`);
     
     // ======== triggers ========
-
+    
     // update status of booked time slot
     db.run(`
         CREATE TRIGGER IF NOT EXISTS set_status_of_time_slot_after_insert
@@ -66,6 +68,38 @@ db.serialize(() => {
             UPDATE time_slots
             SET status = 'booked'
             WHERE id = NEW.time_slot_id;
+        END;
+    `);
+
+    // correct the status of time slot for cancelled appointment 
+    db.run(`
+        CREATE TRIGGER IF NOT EXISTS appointment_status_change
+        AFTER UPDATE OF status ON appointments
+        BEGIN
+            -- If appointment is cancelled, free the time slot
+            UPDATE time_slots
+            SET status = 'available'
+            WHERE id = OLD.time_slot_id
+            AND NEW.status = 'cancelled';
+        END;
+    `);
+
+    // avoid booking already booked time slot
+    db.run(`
+        CREATE TRIGGER IF NOT EXISTS prevent_double_booking
+        BEFORE INSERT ON appointments
+        BEGIN
+        SELECT
+            CASE
+            -- Test if non cancelled appointment is linked to the slot 
+            WHEN EXISTS (
+                SELECT 1
+                FROM appointments
+                WHERE time_slot_id = NEW.time_slot_id
+                AND status != 'cancelled'
+            )
+            THEN RAISE(ABORT, 'Time slot already booked')
+            END;
         END;
     `);
 });
