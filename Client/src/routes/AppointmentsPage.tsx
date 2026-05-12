@@ -1,13 +1,14 @@
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router";
 import { useState, useEffect } from "react";
+import DateTimeDisplay from "../components/DateTimeDisplay";
 import { type Appointment } from "../types/types";
 
 export default function AppointmentPage() {
     const { user } = useAuth(); // Destructure auth object
     const navigate = useNavigate();
 
-    const [appointments, setAppointments] = useState<[]>([]); // need a type ------------- not done 
+    const [appointments, setAppointments] = useState<Appointment[]>([]);  
 
     // on page load, make sure user is logged in then get appointments 
     useEffect(() => { 
@@ -32,11 +33,11 @@ export default function AppointmentPage() {
     <section>
         <ul>
         {appointments.map((appointment) => (
-            <li>
-            {/*<appointmentDisplay 
-                appointment={appointment}
-                key={appointment.id}
-            />*/}
+            <li key={appointment.id}>
+                <p>{appointment.reason}</p>
+                <p>{appointment.status}</p>
+                <p>Dr. {appointment.timeSlot.doctorFirstName} {appointment.timeSlot.doctorLastName}</p>
+                <DateTimeDisplay datetime={appointment.timeSlot.datetime}/>
             </li>
         ))}
         </ul>
