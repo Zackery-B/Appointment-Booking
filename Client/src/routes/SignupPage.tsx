@@ -35,7 +35,7 @@ export default function MakeAccountPage() {
         }
         else {
             
-            // make request to api to validate login 
+            // make request to api to sign up
             fetch("/api/user/signup",{
                 method: 'POST',
                 headers: {
