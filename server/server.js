@@ -104,7 +104,7 @@ app.post("/api/user/signup", async (req, res) => {
 });
 
 // gets all doctors
-app.get("/api/time-slots", async (req, res) => {
+app.get("/api/doctors", async (req, res) => {
     const sql = `
         SELECT 
             id,
