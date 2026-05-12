@@ -131,6 +131,25 @@ app.get("/api/time-slots", async (req, res) => {
     });
 });
 
+// deal with appointment creation  
+app.post("/api/appointments/book", async (req, res) => {
+    const { userID, reason, details, timeSlotID } = req.body;
+    const sql = `
+        INSERT INTO appointments (status, reason, details, time_slot_id, client_id)
+        VALUES (pending, ?, ?, ?, ?);
+    `;
+
+    db.run(sql, [userID, reason, details, timeSlotID], async (err) => {
+        // deal with database error 
+        if (err) {
+            return res.status(500).json({ error: "Database error" });
+        }
+        else // appointment created successfully 
+            return res.status(200).json({ message: "Appointment created successfully" });
+    });
+});
+
+
 // ============ testing / debugging ============
 app.get("/debug/users", (req, res) => {
     const sql = "SELECT * FROM users";
