@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import type { SubmitEvent, ChangeEvent} from "react";
 import TimeSlotSelector from "../components/TimeSlotSelector";
 import Drawer from "../components/Drawer";
+import DateTimeDisplay from "../components/DateTimeDisplay";
 import { type TimeSlot } from "../types/types";
 
 export default function BookAppointmentPage() {
@@ -129,7 +130,7 @@ export default function BookAppointmentPage() {
                     ) : (
                         <>
                         <p>Dr. {selectedSlot.doctorFirstName} {selectedSlot.doctorLastName}</p>
-                        <p>Time: {selectedSlot.datetime}</p>
+                        <DateTimeDisplay datetime={selectedSlot.datetime}/>
                         </>
                     )}
                 </button>
