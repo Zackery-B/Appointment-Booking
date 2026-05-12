@@ -16,8 +16,9 @@ export default function BookAppointmentPage() {
     
     const [formData, setFormData] = useState({
         reason: "",
-        details: "",
+        details: ""
     });
+    const [error, setError] = useState("");
 
     // on page load, make sure user is logged in then get time slots
     useEffect(() => { 
@@ -52,6 +53,38 @@ export default function BookAppointmentPage() {
     function handleSubmit(submission: SubmitEvent<HTMLFormElement>){
         submission.preventDefault();
 
+        if (formData.reason == "" )
+            setError("Please select a reason for your appointment.");
+        else if (selectedSlot == null)
+            setError("Please select a time slot.");
+        else { // no errors 
+
+            const data = {
+                userID: user?.id, // user should not be null 
+                reason: formData.reason,
+                details: formData.details,
+                timeSlot: selectedSlot
+            }
+
+            // make request to api to book appointment
+            fetch("/api/appointments/book",{
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then((response) => { // manage api response 
+                if (!response.ok)
+                    throw new Error(`***HTTP error, status: ${response.status}`); 
+                else
+                    navigate('/appointments');
+            })
+            .catch(error => {
+                console.error(error);
+                setError("Error: Something went wrong."); 
+            });
+        }
     }
 
 
@@ -67,11 +100,21 @@ export default function BookAppointmentPage() {
                 onChange={updateFormData}
                 >
                     <option value="">Select a reason for the appointment</option>
-                    <option value="client">Client</option>
-                    <option value="doctor">Doctor</option>
+                    <option value="General checkup">General checkup</option>
+                    <option value="Follow-up visit">Follow-up visit</option>
+                    <option value="New symptom">New symptom</option>
+                    <option value="Ongoing condition review">Ongoing condition review</option>
+                    <option value="Prescription renewal">Prescription renewal</option>
+                    <option value="Test results discussion">Test results discussion</option>
+                    <option value="Referral request">Referral request</option>
+                    <option value="Injury or pain">Injury or pain</option>
+                    <option value="Mental health concern">Mental health concern</option>
+                    <option value="Vaccination or immunization">Vaccination or immunization</option>
+                    <option value="Other">Other</option>
                 </select>
             </div>
             <div>
+                <label htmlFor="details">Details</label>
                 <textarea 
                 name="details" 
                 id="details"
@@ -93,6 +136,7 @@ export default function BookAppointmentPage() {
             </div>
             <button>Complete Appointment</button>
         </form>
+        {(error !== "") && <div className="error">{error}</div>}
 
         <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)}>
             <TimeSlotSelector
