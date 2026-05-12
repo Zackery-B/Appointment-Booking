@@ -18,5 +18,4 @@ export interface Appointment {
     reason:string;
     details:string;
     timeSlot:TimeSlot;
-    clientID:number;
 }
