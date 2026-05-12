@@ -55,6 +55,19 @@ db.serialize(() => {
     
     // efficient sort by client 
     db.run(`CREATE INDEX IF NOT EXISTS idx_client_id ON appointments(client_id);`);
+    
+    // ======== triggers ========
+
+    // update status of booked time slot
+    db.run(`
+        CREATE TRIGGER IF NOT EXISTS set_status_of_time_slot_after_insert
+        AFTER INSERT ON appointments
+        BEGIN
+            UPDATE time_slots
+            SET status = 'booked'
+            WHERE id = NEW.time_slot_id;
+        END;
+    `);
 });
 
 module.exports = db;
