@@ -131,6 +131,40 @@ app.get("/api/time-slots", async (req, res) => {
     });
 });
 
+// deal with fetching appointments  
+app.get("/api/appointments", async (req, res) => {
+
+    const userID = req.query.userID; // get user id from query 
+
+    const sql = `
+        SELECT 
+            appointments.id,
+            appointments.status,
+            appointments.reason,
+            appointments.details,
+            time_slots.datetime,
+            users.first_name AS doctorFirstName,
+            users.last_name AS doctorLastName
+        FROM appointments
+        JOIN time_slots ON time_slots.id = appointment.time_slot_id
+        JOIN users ON users.id = time_slots.doctor_id 
+        WHERE appointments.client_id = ?
+    `;
+
+    db.all(sql, [userID], async (err) => {
+        // deal with database error
+        if (err) {
+            return res.status(500).json({ error: "Database error" });
+        }
+        else { // send data
+            return res.status(200).json({ 
+                message: "Appointments sent",
+                data: rows 
+            });
+        }
+    });
+});
+
 // deal with appointment creation  
 app.post("/api/appointments/book", async (req, res) => {
     const { userID, reason, details, timeSlotID } = req.body;
