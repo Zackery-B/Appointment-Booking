@@ -48,7 +48,7 @@ app.post("/api/user/login", (req, res) => {
             role, 
             password
         FROM users 
-        WHERE email = ?
+        WHERE email = ?;
     `;
 
     db.get(sql, [email], async (err, row) => {
@@ -148,7 +148,7 @@ app.get("/api/appointments", async (req, res) => {
         FROM appointments
         JOIN time_slots ON time_slots.id = appointments.time_slot_id
         JOIN users ON users.id = time_slots.doctor_id 
-        WHERE appointments.client_id = ?
+        WHERE appointments.client_id = ?;
     `;
 
     db.all(sql, [userID], async (err, rows) => {
@@ -184,10 +184,30 @@ app.post("/api/appointments/book", async (req, res) => {
     });
 });
 
+// deal with appointment status update
+app.patch("/api/appointments/:id", async (req, res) => {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    const sql = `
+        UPDATE appointments
+        SET status = ?
+        WHERE id = ?;
+    `;
+
+    db.run(sql, [status, id], async (err) => {
+        // deal with database error 
+        if (err) {
+            return res.status(500).json({ error: "Database error" });
+        }
+        else // status updated successfully 
+            return res.status(200).json({ message: "Status updated successfully" });
+    });
+})
 
 // ============ testing / debugging ============
 app.get("/debug/users", (req, res) => {
-    const sql = "SELECT * FROM users";
+    const sql = "SELECT * FROM users;";
 
     db.all(sql, [], (err, rows) => {
         if (err) {
