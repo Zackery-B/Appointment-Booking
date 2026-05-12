@@ -23,9 +23,9 @@ export default function BookAppointmentPage() {
 
     // on page load, make sure user is logged in then get time slots
     useEffect(() => { 
-        //if (user == null)  // removed for testing --------------------- testing 
-            //navigate('/login');
-        //else 
+        if (user == null) 
+            navigate('/login');
+        else 
             getTimeSlots() 
     }, []); 
 
