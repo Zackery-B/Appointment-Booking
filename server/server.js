@@ -32,10 +32,18 @@ process.on("SIGINT", () => {
 
 // ========== Paths ========== 
 
-// test if API is working 
-app.get("/api/", (req, res) => {
-    res.send("API is running");
-});
+/* === list of all API paths === 
+post /api/user/login - deals with login 
+post /api/user/signup - deals with sign up 
+get /api/doctors - gets doctors 
+get /api/time-slots - gets time slots 
+get /api/appointments - gets appointments for a user 
+post /api/appointments/book - books a appointment 
+patch /api/appointments/:id - updates appointment status 
+=== testing ===
+get /api/ - makes sure the API/server is running
+get /debug/users - gets all users 
+*/
 
 // deal with login request 
 app.post("/api/user/login", (req, res) => {
@@ -233,6 +241,13 @@ app.patch("/api/appointments/:id", async (req, res) => {
 })
 
 // ============ testing / debugging ============
+
+// test if API is working 
+app.get("/api/", (req, res) => {
+    res.send("API is running");
+});
+
+// get all users
 app.get("/debug/users", (req, res) => {
     const sql = "SELECT * FROM users;";
 
