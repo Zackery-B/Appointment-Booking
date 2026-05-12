@@ -11,3 +11,12 @@ export interface TimeSlot {
     doctorLastName:string;
     datetime:string;
 }
+
+export interface Appointment { 
+    id:number;
+    status:string;
+    reason:string;
+    details:string;
+    timeSlot:TimeSlot;
+    clientID:number;
+}
