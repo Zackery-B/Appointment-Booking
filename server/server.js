@@ -112,7 +112,7 @@ app.get("/api/doctors", async (req, res) => {
             users.last_name AS lastName
         FROM users
         WHERE role = 'doctor'
-        ORDER BY lastName COLLATE NOCASE ASC, firstName COLLATE NOCASE ASC;
+        ORDER BY users.last_name COLLATE NOCASE ASC, users.first_name COLLATE NOCASE ASC;
     `;
 
     db.all(sql, [], async (err, rows) => {
@@ -135,7 +135,7 @@ app.get("/api/time-slots", async (req, res) => {
         SELECT 
             time_slots.id,
             time_slots.datetime,
-            time_slots.doctor_id AS doctorID
+            time_slots.doctor_id AS doctorID,
             users.first_name AS doctorFirstName,
             users.last_name AS doctorLastName
         FROM time_slots
