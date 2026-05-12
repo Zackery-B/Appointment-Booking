@@ -1,3 +1,4 @@
+import DateTimeDisplay from "./DateTimeDisplay";
 import { type TimeSlot } from "../types/types";
 
 type TimeSlotProps = {
@@ -10,7 +11,7 @@ export default function TimeSlotDisplay( {timeSlot, setSelectedSlot}:TimeSlotPro
     return(
     <button type="button" onClick={()=>{setSelectedSlot(timeSlot)}}>
         <p>Dr. {timeSlot.doctorFirstName} {timeSlot.doctorLastName}</p>
-        <p>Time: {timeSlot.datetime}</p>
+        <DateTimeDisplay datetime={timeSlot.datetime}/>
     </button>
     )
 }
