@@ -19,7 +19,7 @@ export default function DoctorAppointmentsPage() {
     }, []); 
 
     function getDoctorAppointments(){
-        fetch(`/api/doctor/appointments?userID=${user?.id}`) // user should not be null 
+        fetch(`/api/doctor/appointments?doctorID=${user?.id}`) // user should not be null 
         .then((response) => response.json())
         .then((rows) => {
             // make sure answer is not empty, then sort
@@ -56,7 +56,11 @@ export default function DoctorAppointmentsPage() {
     }
 
     function handleAppointmentCancellation(id:number){
-        fetch(`/api/doctor/appointments/cancel?appointmentID=${user?.id}`) // user should not be null 
+        fetch(`/api/doctor/appointments/${id}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ status: "cancelled" })
+        })
         .then((response) => {
             if(response.ok){
                 updateStatus(id, 'canceled');
@@ -67,7 +71,11 @@ export default function DoctorAppointmentsPage() {
     }
 
     function handleAppointmentConfirmation(id:number){
-        fetch(`/api/doctor/appointments/confirm?appointmentID=${user?.id}`) // user should not be null 
+        fetch(`/api/doctor/appointments/${id}`, { 
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ status: "confirmed" })
+        })
         .then((response) => {
             if(response.ok){
                 updateStatus(id, 'confirmed');
