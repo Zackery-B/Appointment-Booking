@@ -7,6 +7,7 @@ export interface User {
 
 export interface TimeSlot {
     id:number;
+    doctorID:number;
     doctorFirstName:string;
     doctorLastName:string;
     datetime:string;

@@ -135,6 +135,7 @@ app.get("/api/time-slots", async (req, res) => {
         SELECT 
             time_slots.id,
             time_slots.datetime,
+            time_slots.doctor_id AS doctorID
             users.first_name AS doctorFirstName,
             users.last_name AS doctorLastName
         FROM time_slots
