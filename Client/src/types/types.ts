@@ -5,6 +5,12 @@ export interface User {
     role:string;
 }
 
+export interface Doctor {
+    id:Number;
+    firstName:String;
+    lastName:String;
+}
+
 export interface TimeSlot {
     id:number;
     doctorID:number;

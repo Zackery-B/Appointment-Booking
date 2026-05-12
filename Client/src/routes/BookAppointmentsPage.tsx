@@ -5,13 +5,7 @@ import type { SubmitEvent, ChangeEvent} from "react";
 import TimeSlotSelector from "../components/TimeSlotSelector";
 import Drawer from "../components/Drawer";
 import DateTimeDisplay from "../components/DateTimeDisplay";
-import { type TimeSlot } from "../types/types";
-
-type Doctor = {
-    id:Number;
-    firstName:String;
-    lastName:String;
-}
+import type { TimeSlot, Doctor } from "../types/types";
 
 export default function BookAppointmentPage() {
     const { user } = useAuth(); // Destructure auth object

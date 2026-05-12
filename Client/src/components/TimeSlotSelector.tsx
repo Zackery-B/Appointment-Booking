@@ -1,11 +1,11 @@
 import { useState } from "react";
 import type { ChangeEvent } from "react";
 import TimeSlotDisplay from "./TimeSlotDisplay";
-import { type TimeSlot } from "../types/types";
+import type { TimeSlot, Doctor } from "../types/types";
 
 type TimeSlotSelectorProps = {
     timeSlots: TimeSlot[];
-    doctors: any; // could make a doctor type
+    doctors: Doctor[]; 
     setSelectedSlot: (slot:TimeSlot|null) => void;
 };
 
@@ -36,8 +36,8 @@ export default function TimeSlotSelector( {timeSlots, doctors, setSelectedSlot}:
                 >
                     <option value={0}>Select a doctor</option>
 
-                    {timeSlots.map((doctors) => ( // add all doctors
-                        <option value={doctors.doctorID}>{doctors.doctorFirstName} {doctors.doctorLastName}</option>
+                    {doctors.map((doctor:Doctor) => ( // add all doctors
+                        <option value={String(doctor.id)}>{doctor.firstName} {doctor.lastName}</option>
                     ))}
                 </select>
             </div>
