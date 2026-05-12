@@ -103,6 +103,32 @@ app.post("/api/user/signup", async (req, res) => {
     });
 });
 
+// gets all doctors
+app.get("/api/time-slots", async (req, res) => {
+    const sql = `
+        SELECT 
+            id,
+            users.first_name AS firstName,
+            users.last_name AS lastName
+        FROM users
+        WHERE role = 'doctor'
+        ORDER BY lastName COLLATE NOCASE ASC, firstName COLLATE NOCASE ASC;
+    `;
+
+    db.all(sql, [], async (err, rows) => {
+        // deal with database error 
+        if (err) {            
+            return res.status(500).json({ error: "Database error" });
+        }
+        else { // send data
+            return res.status(200).json({ 
+                message: "Doctors sent",
+                data: rows 
+            });
+        }
+    });
+});
+
 // gets all available time slots after current time 
 app.get("/api/time-slots", async (req, res) => {
     const sql = `
