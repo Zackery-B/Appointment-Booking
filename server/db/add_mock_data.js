@@ -97,9 +97,10 @@ db.serialize(() => {
     
     // anointments
     db.run(`
-        INSERT OR IGNORE INTO appointments (status, time_slot_id, client_id)
+        INSERT OR IGNORE INTO appointments (status, details, time_slot_id, client_id)
         VALUES (
             'pending',
+            'these are the details for the appointment',
             1,
             3
         );
