@@ -146,14 +146,15 @@ app.get("/api/appointments", async (req, res) => {
             users.first_name AS doctorFirstName,
             users.last_name AS doctorLastName
         FROM appointments
-        JOIN time_slots ON time_slots.id = appointment.time_slot_id
+        JOIN time_slots ON time_slots.id = appointments.time_slot_id
         JOIN users ON users.id = time_slots.doctor_id 
         WHERE appointments.client_id = ?
     `;
 
-    db.all(sql, [userID], async (err) => {
+    db.all(sql, [userID], async (err, rows) => {
         // deal with database error
         if (err) {
+            console.log(err.message);
             return res.status(500).json({ error: "Database error" });
         }
         else { // send data
