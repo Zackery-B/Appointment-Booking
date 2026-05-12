@@ -136,10 +136,10 @@ app.post("/api/appointments/book", async (req, res) => {
     const { userID, reason, details, timeSlotID } = req.body;
     const sql = `
         INSERT INTO appointments (status, reason, details, time_slot_id, client_id)
-        VALUES (pending, ?, ?, ?, ?);
+        VALUES ('pending', ?, ?, ?, ?);
     `;
 
-    db.run(sql, [userID, reason, details, timeSlotID], async (err) => {
+    db.run(sql, [reason, details, timeSlotID, userID], async (err) => {
         // deal with database error 
         if (err) {
             return res.status(500).json({ error: "Database error" });
