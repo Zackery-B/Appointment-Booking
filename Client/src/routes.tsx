@@ -6,6 +6,7 @@ import LoginPage from "./routes/LoginPage";
 import SignupPage from "./routes/SignupPage";
 import AppointmentPage from "./routes/AppointmentsPage";
 import BookAppointmentPage from "./routes/BookAppointmentsPage";
+import DoctorAppointmentsPage from "./routes/DoctorAppointmentsPage";
 
 const routes: RouteObject[] = [
     { 
@@ -32,6 +33,10 @@ const routes: RouteObject[] = [
             {
                 path: "/appointments/book",
                 element: <BookAppointmentPage/>
+            },
+            {
+                path: "/doctor/appointments",
+                element: <DoctorAppointmentsPage/>
             }
         ]
     }
