@@ -63,7 +63,7 @@ export default function BookAppointmentPage() {
                 userID: user?.id, // user should not be null 
                 reason: formData.reason,
                 details: formData.details,
-                timeSlot: selectedSlot
+                timeSlotID: selectedSlot.id
             }
 
             // make request to api to book appointment
