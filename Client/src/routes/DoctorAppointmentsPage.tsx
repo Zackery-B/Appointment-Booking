@@ -1,7 +1,7 @@
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router";
 import { useState, useEffect } from "react";
-import DateTimeDisplay from "../components/DateTimeDisplay";
+import DoctorAppointmentCard from "../components/DoctorAppointmentCard";
 import { type Appointment } from "../types/types";
 
 export default function DoctorAppointmentsPage() {
@@ -55,8 +55,26 @@ export default function DoctorAppointmentsPage() {
         );
     }
 
-    function handleAppointmentCancellation(){
-        
+    function handleAppointmentCancellation(id:number){
+        fetch(`/api/doctor/appointments/cancel?appointmentID=${user?.id}`) // user should not be null 
+        .then((response) => {
+            if(response.ok){
+                updateStatus(id, 'canceled');
+            }
+            else   
+                throw new Error(`***HTTP error, status: ${response.status}`); 
+        });
+    }
+
+    function handleAppointmentConfirmation(id:number){
+        fetch(`/api/doctor/appointments/confirm?appointmentID=${user?.id}`) // user should not be null 
+        .then((response) => {
+            if(response.ok){
+                updateStatus(id, 'confirmed');
+            }
+            else   
+                throw new Error(`***HTTP error, status: ${response.status}`); 
+        });
     }
 
     return(
@@ -66,25 +84,13 @@ export default function DoctorAppointmentsPage() {
         ) : (
             <ul>
             {appointments.map((appointment) => (
-                <div> 
-                    {(appointment.status == 'pending') ? ( // determine if confirm button is needed 
-                        <button>Confirm</button>
-                    ):(appointment.status == 'confirmed') && ( // determine if confirmed status is needed 
-                        <span>Confirmed</span>
-                    )}
-                    
-                    {(appointment.status == 'pending' || appointment.status == 'confirmed') ? ( // determine if cancel button is needed 
-                        <button>Cancel</button>
-                    ):( // if its not pending or confirmed, its canceled
-                        <span>Canceled</span>
-                    )}
-
-                    <li key={appointment.id}>
-                        <p>{appointment.reason}</p>
-                        <p>{appointment.timeSlot.doctorFirstName} {appointment.timeSlot.doctorLastName}</p>
-                        <DateTimeDisplay datetime={appointment.timeSlot.datetime}/>
-                    </li>
-                </div>
+                <li key={appointment.id}> 
+                <DoctorAppointmentCard
+                    appointment = {appointment}
+                    confirmAppointment = {() => handleAppointmentConfirmation(appointment.id)}
+                    cancelAppointment = {() => handleAppointmentCancellation(appointment.id)}
+                />
+                </li>
             ))}
             </ul>
         )}
