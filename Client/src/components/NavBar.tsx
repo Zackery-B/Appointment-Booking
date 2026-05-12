@@ -17,7 +17,7 @@ export default function NavBar() {
   return (
     <nav className="NavBar">
       {(location.pathname != "/appointments" && user != null) ? <NavLink className="NavLink" to="/appointments">Appointments</NavLink> : ""}
-      {(location.pathname != "/appointments/book" && user != null) ? <NavLink className="NavLink" to="/appointments/book">Book Appointments</NavLink> : ""}
+      {(location.pathname != "/appointments/book" && user != null) ? <NavLink className="NavLink" to="/appointments/book">Book Appointment</NavLink> : ""}
       {(location.pathname != "/login" && user == null) ? <NavLink className="NavLink" to="/login">Login</NavLink> : ""}
       {user != null && <button onClick={handleLogout}>Logout</button>}
     </nav>
