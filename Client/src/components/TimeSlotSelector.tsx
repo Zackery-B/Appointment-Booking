@@ -5,17 +5,18 @@ import { type TimeSlot } from "../types/types";
 
 type TimeSlotSelectorProps = {
     timeSlots: TimeSlot[];
+    doctors: any; // could make a doctor type
     setSelectedSlot: (slot:TimeSlot|null) => void;
 };
 
 
-export default function TimeSlotSelector( {timeSlots, setSelectedSlot}: TimeSlotSelectorProps) {
+export default function TimeSlotSelector( {timeSlots, doctors, setSelectedSlot}: TimeSlotSelectorProps) {
 
-    const [selectedDoctor, setSelectedDoctor] = useState(""); 
+    const [selectedDoctor, setSelectedDoctor] = useState(0); 
 
     function handleDoctorSelection(ev: ChangeEvent<HTMLSelectElement>){
         setSelectedDoctor(()=>{
-            return ev.target.value
+            return Number(ev.target.value)
         })
     }
 
@@ -33,18 +34,17 @@ export default function TimeSlotSelector( {timeSlots, setSelectedSlot}: TimeSlot
                 value={selectedDoctor}
                 onChange={handleDoctorSelection}
                 >
-                    <option value="">Select a doctor</option>
+                    <option value={0}>Select a doctor</option>
 
-                    {timeSlots.map((timeSlot) => ( // add all doctors with a time slot 
-                        <option value={timeSlot.doctorLastName}>{timeSlot.doctorFirstName} {timeSlot.doctorLastName}</option>
+                    {timeSlots.map((doctors) => ( // add all doctors
+                        <option value={doctors.doctorID}>{doctors.doctorFirstName} {doctors.doctorLastName}</option>
                     ))}
                 </select>
             </div>
             <div>
                 <ul>
                 {timeSlots.map((timeSlot) => (
-                    ( selectedDoctor == "" || selectedDoctor == timeSlot.doctorLastName) // filter by last name 
-                    ? (
+                    ( selectedDoctor === 0  || selectedDoctor == timeSlot.doctorID) && (
                         <li>
                         <TimeSlotDisplay 
                             timeSlot={timeSlot}
@@ -54,8 +54,6 @@ export default function TimeSlotSelector( {timeSlots, setSelectedSlot}: TimeSlot
                             key={timeSlot.id}
                         />
                         </li>
-                    ) : ( 
-                        <></> // nothing
                     )
                 ))}
                 </ul>

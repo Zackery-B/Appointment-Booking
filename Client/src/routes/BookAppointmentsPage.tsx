@@ -7,11 +7,18 @@ import Drawer from "../components/Drawer";
 import DateTimeDisplay from "../components/DateTimeDisplay";
 import { type TimeSlot } from "../types/types";
 
+type Doctor = {
+    id:Number;
+    firstName:String;
+    lastName:String;
+}
+
 export default function BookAppointmentPage() {
     const { user } = useAuth(); // Destructure auth object
     const navigate = useNavigate();
 
     const [drawerOpen, setDrawerOpen] = useState(false);
+    const [doctors, setDoctors] = useState<Doctor[]>([]);
     const [timeSlots, setTimeSlots] = useState<TimeSlot[]>([]);
     const [selectedSlot, setSelectedSlot] = useState<TimeSlot|null>(null);
     
@@ -21,12 +28,14 @@ export default function BookAppointmentPage() {
     });
     const [error, setError] = useState("");
 
-    // on page load, make sure user is logged in then get time slots
+    // on page load, make sure user is logged in then get time slots and doctors
     useEffect(() => { 
         if (user == null) 
             navigate('/login');
-        else 
+        else{
             getTimeSlots() 
+            getDoctors()
+        }
     }, []); 
 
 
@@ -35,6 +44,17 @@ export default function BookAppointmentPage() {
         .then((response) => response.json())
         .then((data) => {
             setTimeSlots(data.data) // store the data from answer 
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    }
+
+    function getDoctors(){
+        fetch("/api/doctors")
+        .then((response) => response.json())
+        .then((data) => {
+            setDoctors(data.data) // store the data from answer 
         })
         .catch(error => {
             console.error(error);
@@ -142,6 +162,7 @@ export default function BookAppointmentPage() {
         <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)}>
             <TimeSlotSelector
                 timeSlots={timeSlots}
+                doctors={doctors}
                 setSelectedSlot={(slot:TimeSlot|null) => {
                     setSelectedSlot(slot);
                     setDrawerOpen(false); // auto-close on select
