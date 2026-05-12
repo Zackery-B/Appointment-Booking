@@ -95,7 +95,7 @@ db.serialize(() => {
         );
     `);
     
-    // anointments
+    // appointments
     db.run(`
         INSERT OR IGNORE INTO appointments (status, reason, details, time_slot_id, client_id)
         VALUES (
