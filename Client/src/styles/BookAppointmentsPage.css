@@ -1,0 +1,48 @@
+.BookAppointmentsPage {
+    display: flex;
+    justify-content: center;
+    padding: 0em 2em;
+    font-size: 1.1em;
+}
+
+.BookAppointmentsPage form {
+    border: solid var(--Off-Black);
+    border-radius: 2em;
+    padding: 1em;
+    margin-top: 2em;
+    text-align: left;
+    width: 20em;
+    height: 20em;
+}
+
+.BookAppointmentsPage form select {
+    margin-top: 0.2em;
+    margin-left: 0.3em;
+}
+
+.BookAppointmentsPage form textarea {
+    width: 21em;
+    height: 10em;
+    resize: none;
+    margin-top: 0.3em;
+}
+
+.BookAppointmentsPage form button {
+    margin-top: 0.3em;
+    width: 21em;
+}
+
+.BookAppointmentsPage .TimeSlot {
+    background-color: var(--Light-Purple);
+    color: var(--Off-White);
+    transition: 200ms;
+}
+
+.BookAppointmentsPage .TimeSlot:hover {
+    background-color: var(--Light-Blue);
+    color: var(--Off-Black);
+}
+
+.BookAppointmentsPage .error {
+    margin-top: 0.3em;
+}

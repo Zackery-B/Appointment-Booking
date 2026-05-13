@@ -6,6 +6,7 @@ import TimeSlotSelector from "../components/TimeSlotSelector";
 import Drawer from "../components/Drawer";
 import DateTimeDisplay from "../components/DateTimeDisplay";
 import type { TimeSlot, Doctor } from "../types/types";
+import "../styles/BookAppointmentsPage.css";
 
 export default function BookAppointmentPage() {
     const { user } = useAuth(); // Destructure auth object
@@ -104,7 +105,7 @@ export default function BookAppointmentPage() {
 
 
     return(
-    <section className = "BookAppointmentPage">
+    <section className = "BookAppointmentsPage">
         <form onSubmit={handleSubmit}>
             <div>
                 <label htmlFor="reason">Reason</label>
@@ -138,7 +139,7 @@ export default function BookAppointmentPage() {
                 ></textarea>
             </div>
             <div>
-                <button type="button" onClick={() => setDrawerOpen(true)} > 
+                <button type="button" onClick={() => setDrawerOpen(true)} className={(selectedSlot != null)? "TimeSlot" : "" } > 
                     {(selectedSlot == null) ? (
                         <p>Select time slot</p>
                     ) : (
@@ -150,8 +151,8 @@ export default function BookAppointmentPage() {
                 </button>
             </div>
             <button>Complete Appointment</button>
+            {(error !== "") && <div className="error">{error}</div>}
         </form>
-        {(error !== "") && <div className="error">{error}</div>}
 
         <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)}>
             <TimeSlotSelector
