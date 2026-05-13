@@ -43,7 +43,10 @@ export default function TimeSlotsPage() {
                 headers: {
                 'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData)
+                body: JSON.stringify({
+                    datetime: formData.datetime,
+                    doctorID: user?.lastName // user should not be null
+                })
             })
             .then((response) => { // manage api response 
                 if (!response.ok)
@@ -52,6 +55,7 @@ export default function TimeSlotsPage() {
                     setFormData(() => { // make the datetime field empty 
                         return { datetime: "" };
                     });
+                    setError(false); // remove error 
                 }
             })
             .catch(error => {
