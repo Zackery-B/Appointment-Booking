@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { ChangeEvent } from "react";
 import TimeSlotDisplay from "./TimeSlotDisplay";
 import type { TimeSlot, Doctor } from "../types/types";
+import "../styles/TimeSlotSelector.css";
 
 type TimeSlotSelectorProps = {
     timeSlots: TimeSlot[];
@@ -25,42 +26,42 @@ export default function TimeSlotSelector( {timeSlots, doctors, setSelectedSlot}:
         ? (
             <p>No time slots available</p>
         ) : (
-            <>
-            <div>
-                <label htmlFor="doctor">Filter by doctor</label>
-                <select
-                name="doctor"
-                id="doctor"
-                value={selectedDoctor}
-                onChange={handleDoctorSelection}
-                >
-                    <option value={0}>Select a doctor</option>
+            <section className="TimeSlotSelector">
+                <div>
+                    <label htmlFor="doctor">Filter by doctor</label>
+                    <select
+                    name="doctor"
+                    id="doctor"
+                    value={selectedDoctor}
+                    onChange={handleDoctorSelection}
+                    >
+                        <option value={0}>Select a doctor</option>
 
-                    {doctors.map((doctor:Doctor) => ( // add all doctors
-                        <option value={String(doctor.id)} key={String(doctor.id)}>
-                            {doctor.firstName} {doctor.lastName}
-                        </option>
+                        {doctors.map((doctor:Doctor) => ( // add all doctors
+                            <option value={String(doctor.id)} key={String(doctor.id)}>
+                                {doctor.firstName} {doctor.lastName}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <div>
+                    <ul>
+                    {timeSlots.map((timeSlot) => (
+                        ( selectedDoctor === 0  || selectedDoctor == timeSlot.doctorID) && (
+                            <li key={String(timeSlot.id)} >
+                            <TimeSlotDisplay 
+                                timeSlot={timeSlot}
+                                setSelectedSlot={
+                                    (slot:TimeSlot) => {setSelectedSlot(slot)}
+                                }
+                                key={timeSlot.id}
+                            />
+                            </li>
+                        )
                     ))}
-                </select>
-            </div>
-            <div>
-                <ul>
-                {timeSlots.map((timeSlot) => (
-                    ( selectedDoctor === 0  || selectedDoctor == timeSlot.doctorID) && (
-                        <li key={String(timeSlot.id)}>
-                        <TimeSlotDisplay 
-                            timeSlot={timeSlot}
-                            setSelectedSlot={
-                                (slot:TimeSlot) => {setSelectedSlot(slot)}
-                            }
-                            key={timeSlot.id}
-                        />
-                        </li>
-                    )
-                ))}
-                </ul>
-            </div>
-            </>
+                    </ul>
+                </div>
+            </section>
         )
     )
 }

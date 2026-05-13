@@ -1,0 +1,21 @@
+.TimeSlotSelector button{
+    background: var(--Light-Blue);
+    margin-top: 0.2em;
+    margin-bottom: 0.8em;
+    width: 20em;
+    box-sizing: border-box;
+    border: solid 0.2em transparent;
+    transition: 300ms;
+}
+
+.TimeSlotSelector button:hover{
+    border-color: var(--Light-Purple);
+}
+
+.TimeSlotSelector label {
+    margin-right: 0.3em;
+}
+
+.TimeSlotSelector>div {
+    margin: 1em 0em;
+}
