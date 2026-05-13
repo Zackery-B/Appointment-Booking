@@ -21,7 +21,7 @@ The server can be safely shut down using `Ctrl + C` shortcut in the terminal.
 
 Data is stored in the `database.db` file. It can be safely deleted to remove all current data.
 
-The database will be empty by default. If you want some mock data, you can navigate to the `/server/db` folder and run the `add_mock_data.js` file using the `node add_mock_data.js` command.
+The database will be empty by default. If you want some mock data, you can navigate to the `/server/db` folder and run the `add_mock_data.js` file using the `node add_mock_data.js` command. This can be done before or after starting the server. If there is already data in the database, it may cause errors.
 
 ### Mock data credentials :
 
