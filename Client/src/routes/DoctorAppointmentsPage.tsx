@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import { useState, useEffect } from "react";
 import DoctorAppointmentCard from "../components/DoctorAppointmentCard";
 import { type Appointment } from "../types/types";
+import "../styles/DoctorAppointmentPage.css";
 
 export default function DoctorAppointmentsPage() {
     const { user } = useAuth(); // Destructure auth object
@@ -88,7 +89,7 @@ export default function DoctorAppointmentsPage() {
     }
 
     return(
-    <section>
+    <section className="DoctorAppointmentPage">
         {(appointments == null || appointments.length === 0) ? (
             <p>No appointments</p>
         ) : (

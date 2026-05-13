@@ -1,0 +1,39 @@
+.DoctorAppointmentCard {
+    border: solid 0.2em var(--Off-Black);
+    border-radius: 1em;
+    width: 15em;
+    padding: 0.6em 1.2em;
+}
+
+.DoctorAppointmentCard div {
+    margin-bottom: 0.3em;
+}
+
+.DoctorAppointmentCard p {
+    margin-bottom: 0.3em;
+}
+
+.DoctorAppointmentCard button {
+    margin-right: 0.3em;
+}
+
+.DoctorAppointmentCard>div>span {
+    border-radius: 0.3em;
+    background: var(--Light-Purple);
+    color: var(--Off-White);
+    margin-right: 0.3em;
+    padding: 0.2em 0.5em;
+}
+
+.DoctorAppointmentCard>div>p:first-of-type {
+    padding-top: 0.2em;
+}
+
+.DoctorAppointmentCard .DateTimeDisplay span{
+    display: block;
+    padding-bottom: 0.1em;
+}
+
+.DoctorAppointmentCard .DateTimeDisplay span{
+    display: block;
+}

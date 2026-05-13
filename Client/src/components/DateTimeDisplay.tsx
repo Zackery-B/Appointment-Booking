@@ -19,7 +19,7 @@ export default function DateTimeDisplay({datetime}:DateTimeProps) {
     const date = new Date(datetime.replace(" ", "T")) // better safari support
     
     return(
-        <div>
+        <div className="DateTimeDisplay">
             <span>{`${formatterDate.format(date)} `}</span>
             <span>{`at ${formatterTime.format(date)}`}</span>
         </div>
