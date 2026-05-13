@@ -37,7 +37,9 @@ export default function TimeSlotSelector( {timeSlots, doctors, setSelectedSlot}:
                     <option value={0}>Select a doctor</option>
 
                     {doctors.map((doctor:Doctor) => ( // add all doctors
-                        <option value={String(doctor.id)}>{doctor.firstName} {doctor.lastName}</option>
+                        <option value={String(doctor.id)} key={String(doctor.id)}>
+                            {doctor.firstName} {doctor.lastName}
+                        </option>
                     ))}
                 </select>
             </div>
@@ -45,7 +47,7 @@ export default function TimeSlotSelector( {timeSlots, doctors, setSelectedSlot}:
                 <ul>
                 {timeSlots.map((timeSlot) => (
                     ( selectedDoctor === 0  || selectedDoctor == timeSlot.doctorID) && (
-                        <li>
+                        <li key={String(timeSlot.id)}>
                         <TimeSlotDisplay 
                             timeSlot={timeSlot}
                             setSelectedSlot={
