@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { ChangeEvent, SubmitEvent } from "react";
 import { useNavigate } from 'react-router';
+import "../styles/SignupPage.css";
 
 export default function MakeAccountPage() {
 
@@ -57,7 +58,7 @@ export default function MakeAccountPage() {
     }
 
     return(
-    <section className="LoginPage">
+    <section className="SignupPage">
         <form onSubmit={handleSubmit}>
             <div>
                 <h2>Make account</h2>

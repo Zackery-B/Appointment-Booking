@@ -48,6 +48,15 @@ button:hover{
     background: var(--Mid-Blue);
 }
 
+select {
+    border: solid 0.1em var(--Off-Black);
+    border-radius: 0.2em;
+    background: var(--Off-White);
+    color: var(--Off-Black);
+    font-size: 0.85em;
+    padding: 0.1em;
+}
+
 /* ======= error ======== */
 
 .error{

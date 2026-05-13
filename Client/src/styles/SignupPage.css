@@ -1,0 +1,45 @@
+.SignupPage {
+    display: flex;
+    justify-content: center;
+    padding: 0em 2em;
+    font-size: 1.1em;
+}
+
+.SignupPage form {
+    border: solid var(--Off-Black);
+    border-radius: 2em;
+    padding: 1em;
+    margin-top: 2em;
+    text-align: left;
+    width: 20em;
+    height: 20.5em;
+}
+
+.SignupPage form h2 {
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+
+.SignupPage form label {
+    display: block;
+}
+
+.SignupPage form input {
+    background: var(--Off-White);
+    border: solid 0.01em var(--Off-Black);
+    border-radius: 0.2em;
+    margin-top: 0.2em;
+    padding: 0.2em;
+    font-size: 0.9em;
+}
+
+.SignupPage form select {
+    margin-top: 0.2em;
+    margin-right: 0.3em;
+}
+
+.SignupPage form div {
+    margin: 0.3em 0em;
+}
