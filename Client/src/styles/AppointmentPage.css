@@ -1,0 +1,36 @@
+.AppointmentPage {
+    padding: 0.5em 2em;
+}
+
+.AppointmentPage ul li {
+    padding-bottom: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+.AppointmentPage ul li {
+    border: solid 0.2em var(--Off-Black);
+    border-radius: 1em;
+    width: 15em;
+    padding: 0.6em 1.2em;
+}
+
+.AppointmentPage ul li div {
+    margin-bottom: 0.3em;
+}
+
+.AppointmentPage ul li p {
+    margin-bottom: 0.3em;
+}
+
+.AppointmentPage ul li .DateTimeDisplay span{
+    display: block;
+    padding-bottom: 0.1em;
+}
+
+.AppointmentPage ul li .DateTimeDisplay span{
+    display: block;
+}
+
+.AppointmentPage .Status {
+    text-transform: capitalize;
+}

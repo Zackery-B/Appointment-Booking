@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import { useState, useEffect } from "react";
 import DateTimeDisplay from "../components/DateTimeDisplay";
 import { type Appointment } from "../types/types";
+import "../styles/AppointmentPage.css";
 
 export default function AppointmentPage() {
     const { user } = useAuth(); // Destructure auth object
@@ -45,7 +46,7 @@ export default function AppointmentPage() {
     }
 
     return(
-    <section>
+    <section className="AppointmentPage">
         {(appointments == null || appointments.length === 0) ? (
             <p>No appointments</p>
         ) : (
@@ -53,7 +54,7 @@ export default function AppointmentPage() {
             {appointments.map((appointment) => (
                 <li key={appointment.id}>
                     <p>{appointment.reason}</p>
-                    <p>{appointment.status}</p>
+                    <p className="Status">{appointment.status}</p>
                     <p>Dr. {appointment.timeSlot.doctorFirstName} {appointment.timeSlot.doctorLastName}</p>
                     <DateTimeDisplay datetime={appointment.timeSlot.datetime}/>
                 </li>
