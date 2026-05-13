@@ -57,7 +57,7 @@ export default function DoctorAppointmentsPage() {
 
     // handle canceling an appointment
     function handleAppointmentCancellation(id:number){
-        fetch(`/api/doctor/appointments/${id}`, {
+        fetch(`/api/appointments/${id}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ status: "cancelled" })
@@ -73,7 +73,7 @@ export default function DoctorAppointmentsPage() {
 
     // handle confirming an appointment
     function handleAppointmentConfirmation(id:number){
-        fetch(`/api/doctor/appointments/${id}`, { 
+        fetch(`/api/appointments/${id}`, { 
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ status: "confirmed" })
