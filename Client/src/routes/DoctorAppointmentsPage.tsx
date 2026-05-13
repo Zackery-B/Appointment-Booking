@@ -19,7 +19,7 @@ export default function DoctorAppointmentsPage() {
     }, []); 
 
     function getDoctorAppointments(){
-        fetch(`/api/doctor/appointments?doctorID=${user?.id}`) // user should not be null 
+        fetch(`/api/doctor/appointments?userID=${user?.id}`) // user should not be null 
         .then((response) => response.json())
         .then((rows) => {
             // make sure answer is not empty, then sort
@@ -55,6 +55,7 @@ export default function DoctorAppointmentsPage() {
         );
     }
 
+    // handle canceling an appointment
     function handleAppointmentCancellation(id:number){
         fetch(`/api/doctor/appointments/${id}`, {
             method: "PATCH",
@@ -70,6 +71,7 @@ export default function DoctorAppointmentsPage() {
         });
     }
 
+    // handle confirming an appointment
     function handleAppointmentConfirmation(id:number){
         fetch(`/api/doctor/appointments/${id}`, { 
             method: "PATCH",
