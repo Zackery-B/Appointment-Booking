@@ -37,6 +37,7 @@ post /api/user/login - deals with login
 post /api/user/signup - deals with sign up 
 get /api/doctors - gets doctors 
 get /api/time-slots - gets time slots 
+post /api/time-slots -- add time slot
 get /api/appointments - gets appointments for a user 
 post /api/appointments/book - books a appointment 
 patch /api/appointments/:id - updates appointment status 
@@ -164,6 +165,24 @@ app.get("/api/time-slots", async (req, res) => {
                 data: rows 
             });
         }
+    });
+});
+
+// add a time slot
+app.post("/api/time-slots", async (req, res) => {
+    const {  dateTime, doctorID } = req.body;
+    const sql = `
+        INSERT INTO time_slots (datetime, doctor_id, status)
+        VALUES (?, ?, 'available');
+    `;
+
+    db.run(sql, [ dateTime, doctorID ], async (err, rows) => {
+        // deal with database error 
+        if (err) {
+            return res.status(500).json({ error: "Database error" });
+        }
+        else // time slot added successfully 
+            return res.status(200).json({ message: "Time slot added successfully" });
     });
 });
 
