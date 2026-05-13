@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import type { ChangeEvent, SubmitEvent } from "react";
 import { useNavigate } from 'react-router';
 import { useAuth } from "../contexts/AuthContext";
+import '../styles/TimeSlotPage.css';
 
 export default function TimeSlotsPage() {
     const { user } = useAuth(); // Destructure auth object
@@ -66,7 +67,7 @@ export default function TimeSlotsPage() {
     }
 
     return(
-    <section className="LoginPage">
+    <section className="TimeSlotPage">
         <form onSubmit={handleSubmit}>
             <div>
                 <h2>Add time slot</h2>

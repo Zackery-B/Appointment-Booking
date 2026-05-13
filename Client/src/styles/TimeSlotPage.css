@@ -1,0 +1,46 @@
+.TimeSlotPage {
+    display: flex;
+    justify-content: center;
+    padding: 0em 2em;
+    font-size: 1.1em;
+}
+
+.TimeSlotPage form {
+    border: solid var(--Off-Black);
+    border-radius: 2em;
+    padding: 1em;
+    
+    margin-top: 2em;
+    text-align: left;
+    width: 25em;
+    height: 14.5em;
+}
+
+.TimeSlotPage form h2 {
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+
+.TimeSlotPage form label {
+    display: block;
+}
+
+.TimeSlotPage form input {
+    background: var(--Off-White);
+    border: solid 0.01em var(--Off-Black);
+    border-radius: 0.2em;
+    margin-top: 0.2em;
+    padding: 0.2em;
+    font-size: 0.9em;
+}
+
+.TimeSlotPage form p {
+    padding-bottom: 0.3em;
+    line-height: 1.2;
+}
+
+.TimeSlotPage form div {
+    margin: 0.3em 0em;
+}
