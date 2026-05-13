@@ -1,6 +1,6 @@
 # Appointment Booker
 
-This project is a simple prototype of a appointment booking site for a medical office.
+This project is a simple prototype of an appointment booking site for a medical office.
 It includes a React front-end and an Express back-end REST API making use of SQLite for the server database.
 
 ## How to run
@@ -41,7 +41,7 @@ The database will be empty by default. If you want some mock data, you can navig
     Email: d2Email
     Password: d2password
 
-Feel free to also create your own client and/or doctor account through the "Make Account" page.
+Feel free to also create your own client and/or doctor account through the "Create Account" page.
 
 Permissions and accessible pages will be different depending on if you are logged in as a doctor or client.
 
@@ -49,9 +49,9 @@ Permissions and accessible pages will be different depending on if you are logge
 
 I made use of various tools and libraries, including React, Vite, Express, and SQLite, all installed through the Node.js package manager.
 
-The React front end is based on a previous school project I completed with a teammate. Most of it is built from scratch, but sections of the other project were used or modified as necessary.
+The React front-end is based on a previous school project I completed with a teammate. Most of it is built from scratch, but sections of the other project were used or modified as necessary.
 
-The back end, including the endpoints, database, and queries, are made from scratch, making using listed tools.
+The back end, including the endpoints, database, and queries, was built from scratch using the listed tools.
 
 ## Technical decision
 
@@ -61,15 +61,15 @@ I was already familiar with Vite. It provides very helpful development support l
 
 ### React
 
-I choose to use React to make the front end because I have previous experience with it. I knew it could provide a simple to make, pretty, and effective front end.
+I choose to use React to make the front-end because I have previous experience with it. I knew it could provide a simple to make, pretty, and effective front-end.
 
 ### Express
 
-I had limited previous experience with Express and learned a lot during this project. I discovered it while doing some research for this project. It's a simple Node.js framework used to build back ends exactly like the REST API I required. It provides very easy routing and database querying. It is also commonly used with React.
+I had limited previous experience with Express and learned a lot during this project. It's a simple Node.js framework used to build back-ends exactly like the REST API I required. It provides very easy routing and database querying. It is also commonly used with React.
 
 ### SQLite
 
-I chose to use SQLite because it is simple to use, lacking complex configurations. I have not previously configured a database, so I preferred a simpler option.
+I chose to use SQLite because it is simple to use and lacks complex configurations. I have not previously configured a database, so I preferred a simpler option.
 SQLite is also very lightweight while still providing all the functionality needed from a database.
 It's also supported by Node.js, making it easy to include in the project.
 
@@ -83,7 +83,7 @@ It's also supported by Node.js, making it easy to include in the project.
 
 - Add complex password requirement to enhance user security.
 
-- Add secure automatic login when you create an account.
+- Add secure automatic login when the users creates an account.
 
 - Add animations to the drawer to make it smoother.
 

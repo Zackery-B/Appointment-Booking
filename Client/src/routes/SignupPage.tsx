@@ -61,7 +61,7 @@ export default function MakeAccountPage() {
     <section className="SignupPage">
         <form onSubmit={handleSubmit}>
             <div>
-                <h2>Make account</h2>
+                <h2>Create account</h2>
             </div>
             <div>
                 <label htmlFor="firstName">First Name</label>
@@ -117,7 +117,7 @@ export default function MakeAccountPage() {
                 <span>This is a placeholder solution.</span>
             </div>
             <div>
-                <button>Make Account</button>
+                <button>Create Account</button>
             </div>
             {error && <div className="error">Account creation failed</div>}
         </form>
