@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { ChangeEvent, SubmitEvent } from "react";
 import { useNavigate, Link } from 'react-router';
 import { useAuth } from "../contexts/AuthContext";
-//import "../styles/LoginPage.css";
+import "../styles/LoginPage.css";
 
 export default function LoginPage() {
 
