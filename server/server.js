@@ -40,6 +40,7 @@ get /api/time-slots - gets time slots
 get /api/appointments - gets appointments for a user 
 post /api/appointments/book - books a appointment 
 patch /api/appointments/:id - updates appointment status 
+get /api/doctor/appointments - get appointments for a doctor
 === testing ===
 get /api/ - makes sure the API/server is running
 get /debug/users - gets all users 
@@ -239,6 +240,41 @@ app.patch("/api/appointments/:id", async (req, res) => {
             return res.status(200).json({ message: "Status updated successfully" });
     });
 })
+
+// deal with fetching appointments for a doctor  
+app.get("/api/doctor/appointments", async (req, res) => {
+
+    const userID = req.query.userID; // get user id from query 
+
+    const sql = `
+        SELECT 
+            appointments.id,
+            appointments.status,
+            appointments.reason,
+            appointments.details,
+            time_slots.datetime,
+            users.first_name AS clientFirstName,
+            users.last_name AS clientLastName
+        FROM appointments
+        JOIN time_slots ON time_slots.id = appointments.time_slot_id
+        JOIN users ON users.id = appointments.client_id 
+        WHERE time_slots.doctor_id = ?;
+    `;
+
+    db.all(sql, [userID], async (err, rows) => {
+        // deal with database error
+        if (err) {
+            console.log(err.message);
+            return res.status(500).json({ error: "Database error" });
+        }
+        else { // send data
+            return res.status(200).json({ 
+                message: "Appointments sent",
+                data: rows 
+            });
+        }
+    });
+});
 
 // ============ testing / debugging ============
 
