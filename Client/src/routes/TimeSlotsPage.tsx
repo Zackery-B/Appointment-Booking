@@ -68,8 +68,8 @@ export default function TimeSlotsPage() {
                 <h2>Add time slot</h2>
             </div>
             <div>
-                <p>This page is a placeholder to make adding time slots simple.</p>
-                <p>Please enter date and time in YYYY-MM-DD HH:MM:SS format without extra spacing</p>
+                <p>This page is a placeholder to make adding time slots simpler.</p>
+                <p>Please enter date and time in YYYY-MM-DD HH:MM:SS format without extra spacing.</p>
             </div>
             <div>
                 <label htmlFor="datetime">Date and Time</label>
