@@ -6,19 +6,22 @@
 .NavBar .NavLink {
     font-size: 0.9em;
     color: var(--Blue);
-    padding: 0.4em 1em;
+    padding: 0.5em 1em;
     border-radius: 0.3em;
     text-decoration: none;
     border-radius: 1em;
+    font-weight: bold;
 }
 
 .NavBar .NavLink:hover {
     background-color: var(--Light-Purple);
     color: var(--Off-White);
-    transition-duration: 0.4s;
+    transition-duration: 350ms;
 }
 
 .NavBar button{
+    background: var(--Light-Purple);
+    color: var(--Off-White);
     font-weight: bold;
     font-size: 0.8em;
     margin-left: 0.4em;
