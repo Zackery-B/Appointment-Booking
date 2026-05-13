@@ -57,6 +57,15 @@ select {
     padding: 0.1em;
 }
 
+textarea {
+    border: solid 0.1em var(--Off-Black);
+    border-radius: 0.2em;
+    background: var(--Off-White);
+    color: var(--Off-Black);
+    font-size: 0.92em;
+    padding: 0.3em;
+}
+
 /* ======= error ======== */
 
 .error{
