@@ -32,8 +32,8 @@ export default function DoctorAppointmentsPage() {
                     details: row.details,
                     timeSlot: {
                         datetime: row.datetime,
-                        doctorFirstName: row.doctorFirstName,
-                        doctorLastName: row.doctorLastName,
+                        doctorFirstName: row.clientFirstName,  // could rename type 
+                        doctorLastName: row.clientLastName,
                     }
                 }));
                 setAppointments(sortedData) // store the sorted data from the answer 
@@ -92,7 +92,7 @@ export default function DoctorAppointmentsPage() {
         ) : (
             <ul>
             {appointments.map((appointment) => (
-                <li key={appointment.id}> 
+                <li key={String(appointment.id)}> 
                 <DoctorAppointmentCard
                     appointment = {appointment}
                     confirmAppointment = {() => handleAppointmentConfirmation(appointment.id)}
