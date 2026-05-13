@@ -56,7 +56,10 @@ export default function LoginPage() {
 
                 login(userData); // mark user as logged in
                 
-                navigate('/appointments');
+                if(userData.role == 'doctor')
+                    navigate('/doctor/appointments');
+                else
+                    navigate('/appointments');
             })
             .catch(error => {
                 console.error(error);
