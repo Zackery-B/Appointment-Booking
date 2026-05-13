@@ -6,9 +6,9 @@ export interface User {
 }
 
 export interface Doctor {
-    id:Number;
-    firstName:String;
-    lastName:String;
+    id:number;
+    firstName:string;
+    lastName:string;
 }
 
 export interface TimeSlot {
